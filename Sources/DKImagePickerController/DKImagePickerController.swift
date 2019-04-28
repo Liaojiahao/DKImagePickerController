@@ -224,7 +224,9 @@ open class DKImagePickerController: DKUINavigationController, DKImageBaseManager
     private var needShowInlineCamera = true
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if self.sourceType == .camera {
+            self.navigationBar.isHidden = true
+        }
         self.doSetupOnce()
         
         if self.needShowInlineCamera && self.sourceType == .camera {
@@ -387,7 +389,7 @@ open class DKImagePickerController: DKUINavigationController, DKImageBaseManager
     private func showCamera(isInline: Bool) {
         let didCancel = { [unowned self] () in
             if self.sourceType == .camera {
-                self.dismissCamera(isInline: true)
+//                self.dismissCamera(isInline: true)
                 self.dismiss()
             } else {
                 self.dismissCamera()
